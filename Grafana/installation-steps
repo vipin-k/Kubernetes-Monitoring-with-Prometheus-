@@ -1,0 +1,8 @@
+helm list --all --namespace metrics
+helm status prometheus --namespace metrics
+mkdir /opt/grafana (Worker Node1)
+mkdir /opt/grafana (Worker Node2)
+kubectl apply -f pv-grafna.yml
+kubectl get pv
+kubectl get pvc --namespace metric
+helm install grafana stable/grafana --namespace metrics -f value.yml
