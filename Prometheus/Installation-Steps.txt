@@ -1,0 +1,22 @@
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+helm version
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo update
+helm search stable/prometheus
+kubectl create ns metrics
+mkdir /opt/alertmanager (Worker Node -1)
+mkdir /opt/alertmanager (Worker Node -2)
+kubectl apply -f alertmanager-pv.yml
+kubectl get pv
+kubectl get pvc --namespace=metrics
+mkdir /opt/prometheus (Worker Node -1)
+mkdir /opt/prometheus (Worker Node -2)
+kubectl apply -f prometheus-pv.yml
+kubectl get pv
+kubectl get pvc --namespace metrics
+helm install prometheus stable/prometheus --namespace metrics -f value.yml
+kubectl get pods --namespace metrics
+kubectl get all --namespace metrics
+kubectl get ingresses --namespace metrics
